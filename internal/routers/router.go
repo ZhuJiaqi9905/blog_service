@@ -2,17 +2,18 @@ package routers
 
 import (
 	v1 "blog-service/internal/routers/api/v1"
+
 	"github.com/gin-gonic/gin"
 )
 
-func NewRouter() *gin.Engine{
+func NewRouter() *gin.Engine {
 
-	r := gin.New()//新建一个Engine实例
-	r.Use(gin.Logger())//给Engine添加Logger和Recovery
+	r := gin.New()      //新建一个Engine实例
+	r.Use(gin.Logger()) //给Engine添加Logger和Recovery
 	r.Use(gin.Recovery())
 	tag := v1.NewTag()
 	article := v1.NewArticle()
-	apiv1 := r.Group("/api/v1")//注册路由
+	apiv1 := r.Group("/api/v1") //注册路由
 
 	{
 		apiv1.POST("/tags", tag.Create)
